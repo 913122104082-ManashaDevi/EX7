@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Program - 1</title>
+        <meta charset="UTF-8"/>
+        <meta name="Program1" content="Weather View App"/>
+        <style>
+            #link{
+                visibility: hidden;
+                font-size: 30px;
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <form action="http://localhost:8089/DeviServletApplication/htmlServlet" method="get">
+                User Name : <input type="text" name="userName"/><br/><br/>
+                Make your Choice : <input type="radio" name="radio" value="Yes" onclick="moveOn()"/>I want to see
+                <input type="radio" name="radio" value="No"/>Later I can see<br/><br/>
+                <a href="http://localhost:8089/DeviServletApplication/htmlServlet" id="link">Go</a>
+            </form>
+        </div>
+        <script>
+            function moveOn(){
+                var link = document.getElementById("link");
+                link.style.visibility = 'visible';
+            }
+            function dontMove(){
+                var rValue = document.getElementsByName("radio").value;
+                link.style.visibility = 'hidden';
+            }
+        </script>
+    </body>
+</html>
