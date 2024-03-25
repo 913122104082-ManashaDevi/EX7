@@ -1,0 +1,42 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+public class cityServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest rq, HttpServletResponse rs)
+            throws ServletException, IOException {
+        rs.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = rs.getWriter();
+        String userName = (String)rq.getParameter("userName");
+        String cityName = (String)rq.getParameter("cityName");
+        if(userName == null || cityName == null) {
+            out.println("<p>Missing user name or city name</p>");
+            return;
+        }
+        HttpSession ss = rq.getSession();
+        ss.setAttribute("userName", userName);
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>Weather App</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<div>");
+        out.println("<h1>Welcome " + userName + "</h1>");
+        out.println("<h2>Let's see the weather of " + cityName + "</h2>");
+        out.println("<form action='cityWeather.jsp' method='GET'>");
+        out.println("Make your choice : ");
+        out.println("<input type='radio' name='radio' value='Yes'/>Sure We can ");
+        out.println("<input type='radio' name='radio' value='No'/>Later We can ");
+        out.println("<br/><br/>");
+        out.println("<input type='hidden' name='cityName' value='" + cityName + "'/>");
+        out.println("<input type='submit' value='Submit'/>");
+        out.println("</form>");
+        out.println("</div>");
+        out.println("</body>");
+        out.println("</html>");
+    } 
+}
